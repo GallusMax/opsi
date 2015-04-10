@@ -1,0 +1,31 @@
+DefVar $Var_portname$
+set $Var_portname$ = IniVar("port")
+DefVar $Var_portline$
+set $Var_portline$ = "port=COM"+$Var_portname$
+
+DefVar $ProductId$
+set $ProductId$ = "opsi-hostname"
+
+DefVar $MinimumSpace$
+set $MinimumSpace$ = "1 MB"
+
+DefVar $AllUsers$
+set $AllUsers$="%AllUsersProfileDir%"
+
+DefVar $Path$
+
+DefVar $InstallLogfile$
+set $InstallLogfile$ = "c:\tmp\"+$ProductId$+"Install.log"
+
+DefVar $InstallDir$
+set $InstallDir$ = "%ProgramFilesDir%\opsi.org\"+$ProductId$
+
+DefVar $OldInstallDir$
+set $OldInstallDir$ = "%ProgramFilesDir%\"+$ProductId$
+
+DefVar $domain$
+set $domain$=GetProductProperty("domain","")
+
+DefVar $target$
+set $target$=$InstallDir$+"\BarCodePane.jar"
+

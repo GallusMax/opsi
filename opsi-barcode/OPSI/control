@@ -1,0 +1,36 @@
+[Package]
+version: 5
+depends: 
+incremental: False
+
+[Product]
+type: localboot
+id: opsi-barcode
+name: OPSI Hostname Display
+description: Zeigt einen Barcode, mit dem der Client identifiziert werden kann (Android App: OPSI Admin)
+advice: 
+version: 0.3
+priority: 0
+licenseRequired: False
+productClasses: 
+setupScript: setup.ins
+uninstallScript: 
+updateScript: update.ins
+alwaysScript: setup.ins
+onceScript: 
+customScript: 
+userLoginScript: 
+
+[ProductDependency]
+action: setup
+requiredProduct: javavm
+requiredStatus: installed
+requirementType: before
+
+[ProductProperty]
+type: unicode
+name: domain
+multivalue: False
+editable: True
+description: append this domain after the hostname
+

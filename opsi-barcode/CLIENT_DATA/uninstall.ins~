@@ -1,0 +1,23 @@
+[Initial]
+LogLevel=2
+ExitOnError=false
+ScriptErrorMessages=on
+TraceMode=off
+StayOnTop=false
+
+[Aktionen]
+DefVar $ProductId$
+DefVar $MinimumSpace$
+DefVar $Path$
+
+set $ProductId$ = "maintenance mode"
+set $MinimumSpace$ = "1 MB"
+
+Message "UnInstalling " + $ProductId$ + " ... "
+
+Winbatch_install
+
+[Winbatch_install]
+#regedit /S "%scriptpath%\enableWOL.reg"
+netsh.exe firewall set opmode mode=enable profile=all
+
