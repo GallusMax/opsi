@@ -5,4 +5,5 @@ Might be useful with the OPSI Admin found at https://github.com/dirtyharryiv/And
 Prerequisite: Java 1.6
 Parameter: domain - configurable domain to be appended to the hostname
 
-btw: the hostname is generated as hex string (lowercase) from the 6 byte MAC address.
+Btw: the hostname is generated as hex string (lowercase) from the 6 byte MAC address.
+The domain may be set as commandline argument. This is where the "domain" Parameter goes.
