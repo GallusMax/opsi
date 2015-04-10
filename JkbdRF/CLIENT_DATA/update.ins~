@@ -1,0 +1,66 @@
+[Initial]
+LogLevel=2
+ExitOnError=false
+ScriptErrorMessages=on
+TraceMode=off
+StayOnTop=false
+
+[Aktionen]
+
+  if FileExists("%ScriptPath%\define.ins")
+    sub "%ScriptPath%\define.ins"
+  endif
+
+; Message at install time:
+Message "Installing "+$ProductId$+" ..."
+
+if not( HasMinimumSpace( "%SystemDrive%", $MinimumSpace$))
+  LogError "Not enough space on %SystemDrive% " + $MinimumSpace$ + " fuer " + $ProductId$ + " erforderlich."
+  isFatalError
+else
+;  ShowBitmap /3 "%scriptpath%\"+$ProductId$+".bmp" $ProductId$
+  Files_copy
+LinkFolder_install
+; doesnt recognize $InstallDir$ vars , only %Programfi..% an the like - ugly! UH
+;PatchTextFile_rfid "$InstallDir$\rfid.conf"
+;  Winbatch_install
+;  Files_delete
+endif
+
+;ExitWindows /Reboot
+
+[Winbatch_uninstall]
+msiexec /qb-! /li "$InstallLogfile$" /x $InstallFile$
+
+[Winbatch_install]
+;msiexec /qb-! /lr* "$InstallLogfile$" /i $InstallFile$ TARGETDIR="$InstallDir$"
+msiexec /passive /lr* "$InstallLogfile$" /i $InstallFile$
+regedit /S "%scriptpath%\files\settings.reg"
+
+[Files_copy]
+; something like
+; copy -sv "%SCRIPTPATH%\files\*.*" "%ProgramFilesDir%\$ProductId$"
+copy -v "%SCRIPTPATH%\files\*.*" "$InstallDir$"
+
+[LinkFolder_install]
+set_basefolder common_desktopdirectory
+set_link
+name: JKeyboardRF
+target: $InstallDir$/JkbdRF.jar
+working_dir: $InstallDir$
+end_link
+set_link
+name: rfid.conf
+target: $InstallDir$/rfid.conf
+end_link
+
+;  doesnt work at all UH
+[PatchTextFile_rfid]
+FindLine "port"
+DeleteTheLine
+AddLine port=+$Var_portline$
+
+; doesnt work at all UH
+[Patches_rfid]
+replace debug=44
+del debug

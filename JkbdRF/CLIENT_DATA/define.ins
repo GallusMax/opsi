@@ -1,0 +1,25 @@
+DefVar $Var_portname$
+set $Var_portname$ = IniVar("port")
+DefVar $Var_portline$
+set $Var_portline$ = "port=COM"+$Var_portname$
+
+DefVar $ProductId$
+set $ProductId$ = "JkbdRF"
+
+DefVar $MinimumSpace$
+set $MinimumSpace$ = "1 MB"
+
+DefVar $AllUsers$
+set $AllUsers$="%AllUsersProfileDir%"
+
+DefVar $Path$
+
+DefVar $InstallFile$
+;Set $InstallFile$="%scriptpath%\files\KeyboardRF-selfmade-2009-05-19.msi"
+
+DefVar $InstallLogfile$
+set $InstallLogfile$ = "c:\tmp\"+$ProductId$+"Install.log"
+
+DefVar $InstallDir$
+set $InstallDir$ = "%ProgramFilesDir%\"+$ProductId$
+

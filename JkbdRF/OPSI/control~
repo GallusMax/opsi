@@ -1,0 +1,35 @@
+[Package]
+version: 1
+depends: 
+incremental: False
+
+[Product]
+type: localboot
+id: jkbdrf
+name: Einlesen der Bandbarcodes aus RFID Tags wie ein Handscanner
+description: Java Keyboard-RF / barcodePattern in rfid.conf beschraenkt die an LBS4 gegebenen Barcodes
+advice: 
+version: 0.9.4.1
+priority: 0
+licenseRequired: False
+productClasses: 
+setupScript: setup.ins
+uninstallScript: 
+updateScript: 
+alwaysScript: setup.ins
+onceScript: 
+customScript: 
+userLoginScript: 
+
+[ProductDependency]
+action: setup
+requiredProduct: tagsysusb
+requiredStatus: installed
+requirementType: before
+
+[ProductDependency]
+action: setup
+requiredProduct: javavm
+requiredStatus: installed
+requirementType: before
+
